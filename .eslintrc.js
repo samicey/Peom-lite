@@ -16,5 +16,6 @@ module.exports = {
     'no-unused-vars': process.env.NODE_ENV === 'production' ? 'off' : 'off',
     'import/prefer-default-export': process.env.NODE_ENV === 'production' ? 'off' : 'off',
     'max-len': process.env.NODE_ENV === 'production' ? 'off' : 'off',
+    'no-use-before-define': process.env.NODE_ENV === 'production' ? 'off' : 'off',
   },
 };

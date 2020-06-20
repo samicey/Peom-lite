@@ -16,11 +16,6 @@ const router = new Router({
       redirect: '/dashboard',
     },
     {
-      path: '/',
-      name: 'Home',
-      component: Home,
-    },
-    {
       path: '/login',
       name: 'Login',
       component: Login,

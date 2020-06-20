@@ -21,7 +21,6 @@ const { currentUser } = auth;
 
 // date issue fix according to firebase
 const settings = {
-  timestampsInSnapshots: true,
 };
 db.settings(settings);
 
