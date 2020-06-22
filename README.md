@@ -1,4 +1,7 @@
-# social-app
+# Peom-lite
+
+Welcome to the Peom-Lite sample social media web app powered by Vue.js and Firebase.
+Peom-Lite was built to connect poets and peoms lovers
 
 ## Project setup
 ```
