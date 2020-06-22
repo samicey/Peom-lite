@@ -23,7 +23,7 @@
               </div>
           </div>
       </transition>
-      <transition name="fade">
+   <transition name="fade">
     <div v-if="showPostModal" class="p-modal">
         <div class="p-container">
             <a @click="closePostModal" class="close">X</a>
@@ -31,10 +31,14 @@
                 <h5>{{ fullPost.userName }}</h5>
                 <span>{{ fullPost.createdOn | formatDate }}</span>
                 <p>{{ fullPost.content }}</p>
-                    <ul>
-                        <li><a @click="openCommentModal(fullPost)">comments {{ fullPost.comments || '' }}</a></li>
-                        <li><a @click="likePost(fullPost.id, fullPost.likes)">likes {{ fullPost.likes || ''  }}</a></li>
-                    </ul>
+                    
+                      <span v-for="(post, index) in posts" :key="index">
+                      <ul v-if="onePostId == post.id">
+                          <li><a @click="openCommentModal(post)">comments {{ post.comments || '' }}</a></li>
+                          <li><a @click="likePost(post.id, post.likes)">likes {{ post.likes || ''  }}</a></li>
+                      </ul>
+                      </span>
+                  
             </div>
             <div v-show="postComments.length" class="comments">
                 <div v-for="(comment, index) in postComments" :key="index" class="comment">
@@ -52,7 +56,7 @@
                     <h5>Welcome Back {{ userProfile.name }}</h5>
                     <p>{{ userProfile.title }}</p>
                     <div class="create-post">
-                        <p>create a post</p>
+                        <p>Create a Peom</p>
                         <form @submit.prevent>
                             <textarea v-model.trim="post.content"></textarea>
                             <button @click="createPost"  :disabled="post.content == ''" class="button">post</button>
@@ -131,7 +135,7 @@ export default {
           this.$store.commit('setPosts', updatePostsArray);
 
         },
-        openCommentModal(post) {
+    openCommentModal(post) {
          this.comment.postId = post.id
           this.comment.userId = post.userId
           this.comment.postComments = post.comments
@@ -158,6 +162,9 @@ export default {
                 comments: postComments + 1
             }).then(() => {
                 this.closeCommentModal()
+                if(this.showPostModal){
+                 this.viewPost(this.fullPost)
+                }
             })
         }).catch(err => {
             console.log(err)
@@ -186,7 +193,6 @@ export default {
                 likes: postLikes + 1
             })
         })
-        this.$store.commit('setCurrentUser', currentUser);
     }).catch(err => {
         console.log(err)
     })
@@ -204,6 +210,7 @@ export default {
             this.postComments = commentsArray
             this.fullPost = post
             this.showPostModal = true
+            this.onePostId = post.id
         }).catch(err => {
             console.log(err)
         })
@@ -211,6 +218,7 @@ export default {
     closePostModal() {
         this.postComments = []
         this.showPostModal = false
+        this.onePostId = null
     }
 
   },

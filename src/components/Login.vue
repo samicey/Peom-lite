@@ -7,9 +7,11 @@
 </transition>
         <section>
             <div class="col1">
-                <h1>Vuegram</h1>
-                <p>Welcome to the <a href="https://savvyapps.com/" target="_blank">Savvy Apps</a> sample social media web app powered by Vue.js and Firebase.
-                    Build this project by checking out The Definitive Guide to Getting Started with Vue.js</p>
+                <h1>Peom-Lite</h1>
+                <p>Welcome to the Peom-Lite sample social media web app powered by Vue.js and Firebase.
+                    Peom-Lite was built to connect poets and peoms lovers</p>
+                    <br><br>
+                     <i class="fa fa-bold" aria-hidden="true">Sign Up to Enjoy great peoms from world-class peots</i>
             </div>
             <div class="col2" :class="{ 'signup-form': !showLoginForm }">
               <form v-if="showForgotPassword" @submit.prevent class="password-reset">
@@ -41,11 +43,11 @@
                     <label for="password1">Password</label>
                     <input v-model.trim="loginForm.password" type="password" placeholder="******" id="password1" />
 
-                    <button @click="login" class="button">Log In</button>
+                     <button @click="login" class="button">Log In</button>
 
                     <div class="extras">
                         <a @click="togglePasswordReset">Forgot Password</a>
-                        <a @click="toggleForm">Create an Account</a>
+                        <br><br><button class="button" @click="toggleForm">Create an Account</button>
                     </div>
                 </form>
         <form  v-if="!showLoginForm && !showForgotPassword"  @submit.prevent>
